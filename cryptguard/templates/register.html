@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="static/css/auth_style.css">
+    <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="static/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="static/css/animations.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/animate.css" rel="stylesheet">
+    <link href="static/js/custom.js" rel="stylesheet">
+</head>
+<body>
+<!-- header start -->
+<header class="header fixed clearfix navbar navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+
+                <!-- header-left start -->
+                <div class="header-left">
+
+                    <!-- logo -->
+                    <div class="logo smooth-scroll">
+                        <a href="/"><img id="logo" src="static/images/logo.png" style="height: 60px;"></a>
+                    </div>
+
+                </div>
+                <!-- header-left end -->
+
+            </div>
+            <div class="col-md-8">
+
+                <!-- header-right start -->
+                <div class="header-right">
+
+                    <!-- main-navigation start -->
+                    <div class="main-navigation animated">
+
+                        <!-- navbar start -->
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="container-fluid">
+
+                                <!-- Toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                            data-target="#navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="active"><a href="/">Home</a></li>
+                                        <li><a href="/">About</a></li>
+                                        <li><a href="/">Contact</a></li>
+                                        <li><a href='/login'>Log In</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </nav>
+                        <!-- navbar end -->
+
+                    </div>
+                    <!-- main-navigation end -->
+
+                </div>
+                <!-- header-right end -->
+
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header end -->
+
+<div class="form">
+    <form class="block" method="POST" action="/register">
+        <h1>Sign Up</h1>
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="email">Email</label><br>
+        <input type="text" id="email" name="email" required><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <label for="password">Repeat password</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input class="button" type="submit" value="Sign Up">
+    </form>
+</div>
+{% if error %}
+    <p style="color:red;">{{ error }}</p>
+{% endif %}
+</body>
+</html>

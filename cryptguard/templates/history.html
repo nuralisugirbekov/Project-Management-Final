@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cryptguard History</title>
+
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="static/images/favicon.ico">
+
+    <link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="static/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="static/css/animations.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/animate.css" rel="stylesheet">
+    <link href="static/js/custom.js" rel="stylesheet">
+</head>
+
+<body class="no-trans">
+<!-- scrollToTop -->
+<div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+
+<!-- header start -->
+<header class="header fixed clearfix navbar navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+
+                <!-- header-left start -->
+                <div class="header-left">
+
+                    <!-- logo -->
+                    <div class="logo smooth-scroll">
+                        <a href="/"><img id="logo" src="static/images/logo.png" style="height: 60px;"></a>
+                    </div>
+
+                </div>
+                <!-- header-left end -->
+
+            </div>
+            <div class="col-md-8">
+
+                <!-- header-right start -->
+                <div class="header-right">
+
+                    <!-- main-navigation start -->
+                    <div class="main-navigation animated">
+
+                        <!-- navbar start -->
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="container-fluid">
+
+                                <!-- Toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                            data-target="#navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="active"><a href="/">Home</a></li>
+                                        <li><a href="#about">About</a></li>
+                                        <li><a href="#contact">Contact</a></li>
+                                        {% if username %}
+                                            <li><a>Hello, {{ username }}!</a></li>
+                                            <li><a href="/logout">Logout</a></li>
+                                        {% else %}
+                                            <li><a href='/register'>Sign up</a></li>
+                                            <li><a href='/login'>Log In</a></li>
+                                        {% endif %}
+                                        <li><a href="/history">
+                                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                                 viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="1.5"
+                                                      d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                            </svg>
+                                        </a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </nav>
+                        <!-- navbar end -->
+
+                    </div>
+                    <!-- main-navigation end -->
+
+                </div>
+                <!-- header-right end -->
+
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header end -->
+
+<!-- banner start -->
+<div id="banner" class="banner">
+    <div class="banner-image"></div>
+    <div class="banner-caption" style=" padding-bottom: 80px;">
+        {#        <h1 style="padding-left: 80px;"> Encryption Methods & Decryption </h1>#}
+        <br>
+
+        {% if username %}
+
+            <div class="history-container">
+                <a class="hist-btn" href="/">
+                    <?xml version="1.0" encoding="UTF-8"?>
+{#                        <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.18 5.61">#}
+{#                            <defs>#}
+{#                                <style>#}
+{#                                    .cls-1 {#}
+{#                                        fill: none;#}
+{#                                        stroke: #036;#}
+{#                                        stroke-linecap: round;#}
+{#                                        stroke-linejoin: round;#}
+{#                                        stroke-width: .75px;#}
+{#                                    }#}
+{#                                </style>#}
+{#                            </defs>#}
+{#                            <g id="Layer_4" data-name="Layer 4">#}
+{#                                <line class="cls-1" x1="2.81" y1="5.24" x2=".38" y2="2.81"/>#}
+{#                                <line class="cls-1" x1="2.81" y1=".38" x2=".38" y2="2.81"/>#}
+{#                            </g>#}
+{#                        </svg>#}
+                    Back</a>
+                <h1 class="history-head-text">Cryptguard user history</h1>
+                <a class="hist-btn" href="/clear-history">Clear history</a>
+                <div class="history-container-item">
+                </div>
+
+            </div>
+            <ul>
+                {% if context %}
+                    {% for request in context.requests %}
+                        <li>
+                            <h3>
+                                <b>Encrypted text:</b> {{ request.body }}<br>
+                                <b>Encryption key:</b> {{ request.key }}<br>
+                                <b>Date:</b> {{ request.date }}<br>
+                                <b>Encryption method:</b> {{ request.method }}<br>
+                                <b>Decrypted text:</b> {{ request.output }}<br>
+                            </h3>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+
+        {% else %}
+            <h1 style="padding-left: 60px;"> Please consider <a href="/login">logging in</a> to view your history </h1>
+        {% endif %}
+
+        <div style="padding-left: 80px; font-family: 'Raleway', sans-serif; font-size: 24px; font-weight: 500;">
+            {% if identified_methods %}
+                <h2 style="font-size: 28px;">Method: <span
+                        STYLE="color: white; font-family: 'Raleway', sans-serif; font-size: 24px; font-weight: 500;">{{ identified_methods }}</span>
+                </h2>
+                <h2 style="font-size: 27px;">Decrypted Text: <span
+                        style="color: white; font-family: 'Raleway', sans-serif; font-size: 24px; font-weight: 500;">{{ method }}</span>
+                </h2>
+            {% else %}
+                {% if identified_methods is not defined %}
+                    <p></p>
+                {% else %}
+                    <p>Method not identified</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- banner end -->
+    <section class="hero-caption secPadding">
+        <div class="container">
+
+            <div class="row " style="margin-top: 0px;">
+                <div class="col-sm-12">
+                    <h2>Welcome to <span><strong>CRYPTGUARD</strong></span></h2>
+                    <p style="color: #0a0a0a">Unravel the secrets of your data with CryptGuard, your go-to platform for
+                        encryption analysis.
+                        Simply upload your files or enter your text, and CryptGuard's cutting-edge algorithms will
+                        meticulously examine the data, unveiling the encryption method used.
+                        Embark on a journey of cryptographic exploration with confidence. CryptGuard is your reliable
+                        companion in deciphering the enigmatic. Start your experience now!</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- section start -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 id="about" class="title text-center">About <span>Methods</span></h1>
+                    <p class="lead text-center" style="color: #0a0b0d"> What methods of encryption does CryptGuard
+                        identify?</p>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right" style="color: dodgerblue"></i><span> Atbash Cipher:</span>
+                    </h2>
+                    <h4>The Atbash cipher is a particular type of monoalphabetic cipher originally used to encrypt the
+                        Hebrew alphabet. It can be adapted for all alphabets by reversing the order of the letters; the
+                        first letter becomes the last letter, the second letter becomes the second to last, and so
+                        forth.</h4>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right" style="color: dodgerblue"></i><span> XOR Cipher:</span></h2>
+                    <h4>In the XOR cipher, the plaintext is combined with a key using the XOR operation (exclusive or).
+                        It is particularly notable for its use in modern computer operations, and when the key is the
+                        same length as the plaintext, this method is known as the Vernam cipher or one-time pad, which
+                        is theoretically unbreakable.</h4>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right"
+                           style="color: dodgerblue"></i><span> Rail Fence Cipher:</span></h2>
+                    <h4>The Rail Fence Cipher is a form of transposition cipher that writes the message in a zigzag
+                        pattern on an imaginary fence, thus changing the order of the characters. The message is then
+                        read off in rows.</h4>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right" style="color: dodgerblue"></i><span> ROT13:</span></h2>
+                    <h4>ROT13 is a specific implementation of the Caesar cipher, which uses a shift of 13. It means that
+                        it replaces a letter with the 13th letter after it in the alphabet. ROT13 is its own inverse,
+                        which simplifies encoding and decoding by the same operation.</h4>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right" style="color: dodgerblue"></i><span> Scytale:</span></h2>
+                    <h4>SHA-256 and SHA-3(512) are popular members of the SHA-2 family. These are widely used for data
+                        integrity verification and digital signatures.</h4>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right" style="color: dodgerblue"></i><span>Reverse Cipher:</span>
+                    </h2>
+                    <h4>The Reverse cipher simply reverses the plaintext to create the ciphertext. It is extremely weak
+                        on its own but can be combined with other ciphers to add an extra step to the encryption
+                        process.</h4>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right" style="color: dodgerblue"></i><span> Beaufort Cipher:</span>
+                    </h2>
+                    <h4>The Beaufort Cipher is similar to the Vigenère cipher but uses a different method of creating
+                        the keystream. It effectively uses the same alphabet table as Vigenère but with a reversed
+                        decryption and encryption process. </h4>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right" style="color: dodgerblue"></i><span> Vigenère cipher:</span>
+                    </h2>
+                    <h4>The Vigenère cipher is a method of encrypting alphabetic text where each letter of the plaintext
+                        is encoded with a different Caesar cipher, whose increment is determined by the corresponding
+                        letter of another text, the key.</h4>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right"
+                           style="color: dodgerblue"></i><span> The Caesar cipher:</span></h2>
+                    <h4>The Caesar cipher is a type of symmetric key encryption, meaning the same key (the shift value)
+                        is used for both encryption and decryption. The key, in this case, is the number of positions
+                        each letter is shifted.</h4>
+                    <div class="space"></div>
+                    <h2><i class="fa fa-arrow-circle-right" style="color: dodgerblue"></i><span> Base64:</span></h2>
+                    <h4 style="padding-bottom: 80px;">Base64 is a binary-to-text encoding scheme. It represents binary
+                        data in a printable ASCII string format by translating it into a radix-64 representation.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section end -->
+
+
+    <!-- footer start -->
+    <footer id="footer">
+
+        <!-- .footer start -->
+        <div class="footer section">
+            <div class="container">
+                <h1 class="title text-center" id="contact">Contact Us</h1>
+                <div class="space"></div>
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="footer-content">
+                            <form role="form" id="footer-form">
+                                <div class="form-group has-feedback">
+                                    <label class="sr-only" for="name2">Name</label>
+                                    <input type="text" class="form-control" id="name2" placeholder="Name" name="name2"
+                                           required>
+                                    <i class="fa fa-user form-control-feedback"></i>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label class="sr-only" for="email2">Email address</label>
+                                    <input type="email" class="form-control" id="email2" placeholder="Enter email"
+                                           name="email2" required>
+                                    <i class="fa fa-envelope form-control-feedback"></i>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label class="sr-only" for="message2">Message</label>
+                                    <textarea class="form-control" rows="8" id="message2" placeholder="Message"
+                                              name="message2" required></textarea>
+                                    <i class="fa fa-pencil form-control-feedback"></i>
+                                </div>
+                                <input type="submit" value="Send" class="btn btn-default">
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="footer-content">
+
+
+                            <div class="widget-content">
+
+                                <p>Have questions, feedback, or need assistance? We're here to assist you with any
+                                    inquiries or feedback you may have. Feel free to reach out to us using the following
+                                    contact information:</p><br/>
+
+                                <p class="contacts"><i class="fa fa-map-marker"></i> Mangilik El avenue, 55/11, Astana,
+                                    010000 </p>
+
+                                <p class="contacts"><i class="fa fa-phone"></i> +7 (778) 199 01-07</p>
+
+                                <p class="contacts"><i class="fa fa-envelope"></i> 212018@astanait.edu.kz</p>
+
+
+                            </div>
+                            <ul class="social-links">
+                                <li class="facebook"><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="googleplus"><a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
+                                </li>
+                                <li class="skype"><a target="_blank" href="#"><i class="fa fa-skype"></i></a></li>
+                                <li class="linkedin"><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="youtube"><a target="_blank" href="#"><i class="fa fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- .footer end -->
+
+        <!-- .subfooter start -->
+        <div class="subfooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-center" style="color: white">Copyright © 2024 by CryptGuard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- .subfooter end -->
+
+    </footer>
+    <!-- footer end -->
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="static/plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/plugins/modernizr.js"></script>
+    <script type="text/javascript" src="static/plugins/isotope/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jquery.backstretch.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jquery.appear.js"></script>
+
+    <!-- Custom Scripts -->
+    <script type="text/javascript" src="js/custom.js"></script>
+</div>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
